@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nový stav – přestavby webů</title>
+<title>WebDoctor – přestavby webů</title>
 <meta name="description" content="Přestavujeme zastaralé firemní weby na rychlé a moderní stránky, které fungují na mobilu a přivádějí zákazníky. Mladá Boleslav.">
-<meta property="og:title" content="Nový stav – přestavby webů">
+<meta property="og:title" content="WebDoctor – přestavby webů">
 <meta property="og:description" content="Přestavby a rekonstrukce firemních webů. Realizace, koncepty a postup.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="cs_CZ">
 <meta name="theme-color" content="#16191D">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316191D'/%3E%3Cpath d='M9 24V8h7a5 5 0 0 1 0 10h-7' fill='none' stroke='%23F1F2EE' stroke-width='3'/%3E%3Crect x='20' y='20' width='4' height='4' fill='%23CF2730'/%3E%3C/svg%3E">
+<meta property="og:site_name" content="WebDoctor">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316191D'/%3E%3Cpath d='M6 9l4 14 4-10 4 10 4-14' fill='none' stroke='%23F1F2EE' stroke-width='2.6' stroke-linejoin='round'/%3E%3Cpath d='M24 7v6M21 10h6' stroke='%23CF2730' stroke-width='2.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -131,6 +132,18 @@ section{padding-block:clamp(64px,9vw,120px)}
 .stamp dt{font:500 .66rem/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
 .stamp dd{margin:2px 0 0;font-weight:500;font-size:.92rem;line-height:1.35}
 @media (max-width:900px){.project{grid-template-columns:minmax(0,1fr)}.drawing{border-right:0;border-bottom:1px solid var(--line)}}
+
+
+/* Real screenshots */
+.drawing{display:block}
+.shot{position:relative;padding:28px 0 clamp(28px,5vw,44px)}
+.shot-desk{width:84%}
+.shot-desk img{display:block;width:100%;height:auto}
+.shot-phone{position:absolute;right:0;bottom:0;width:22%;aspect-ratio:780/1500;max-width:100%;border:clamp(3px,.6vw,6px) solid var(--ink);border-radius:clamp(12px,2vw,22px);overflow:hidden;background:#000;box-shadow:0 18px 40px -18px rgba(0,0,0,.55)}
+.shot-phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.kota{position:absolute;top:6px;left:0;width:84%;height:12px;border-left:1px solid var(--new);border-right:1px solid var(--new);color:var(--new);font-size:.66rem}
+.kota::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--new)}
+.kota span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--paper);padding:0 8px;line-height:1}
 
 /* Concepts */
 .concepts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.5vw,32px)}
@@ -289,7 +302,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#uvod"><b>NOVÝ STAV<i>.</i></b><span>přestavby webů</span></a>
+    <a class="brand" href="#uvod"><b>WEB<i>DOCTOR</i></b><span>přestavby webů</span></a>
     <nav class="nav" aria-label="Hlavní navigace">
       <a href="#realizace">Realizace</a>
       <a href="#koncepty">Koncepty</a>
@@ -378,60 +391,25 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
         <!-- DEXTRA -->
         <article class="project">
           <div class="drawing">
-            <svg viewBox="0 0 640 400" role="img" aria-label="Technický výkres rozvržení webu DEXTRA na počítači a mobilu">
-              <defs>
-                <pattern id="hatch-dx" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" class="d-hatch-line"/></pattern>
-              </defs>
-              <!-- dimension: desktop width -->
-              <path class="d-dim" d="M40 24v12M480 24v12M40 30h440"/>
-              <rect x="232" y="22" width="56" height="16" fill="var(--paper)"/>
-              <text class="d-dimtxt" x="260" y="34" text-anchor="middle">1440</text>
-              <!-- desktop -->
-              <rect class="d-line" x="40" y="50" width="440" height="300"/>
-              <line class="d-thin" x1="40" y1="72" x2="480" y2="72"/>
-              <rect class="d-solid" x="52" y="58" width="52" height="7"/>
-              <rect class="d-soft" x="300" y="59" width="28" height="5"/><rect class="d-soft" x="336" y="59" width="28" height="5"/><rect class="d-soft" x="372" y="59" width="28" height="5"/>
-              <rect class="d-new" x="420" y="56" width="48" height="11"/>
-              <rect x="52" y="84" width="416" height="112" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
-              <rect x="60" y="100" width="210" height="80" fill="var(--paper)"/>
-              <text class="d-lbl" x="68" y="113">A — ÚVOD</text>
-              <rect class="d-solid" x="68" y="122" width="180" height="11"/>
-              <rect class="d-solid" x="68" y="138" width="120" height="11"/>
-              <rect class="d-new" x="68" y="158" width="64" height="14"/>
-              <text class="d-lbl" x="52" y="212">B — SLUŽBY</text>
-              <g>
-                <rect class="d-soft" x="52" y="218" width="98" height="46"/><rect class="d-soft" x="158" y="218" width="98" height="46"/><rect class="d-soft" x="264" y="218" width="98" height="46"/><rect class="d-soft" x="370" y="218" width="98" height="46"/>
-                <rect class="d-solid" x="60" y="228" width="50" height="6"/><rect class="d-solid" x="166" y="228" width="50" height="6"/><rect class="d-solid" x="272" y="228" width="50" height="6"/><rect class="d-solid" x="378" y="228" width="50" height="6"/>
-                <text class="d-lbl" x="60" y="254">HALY</text><text class="d-lbl" x="166" y="254">REKONSTRUKCE</text><text class="d-lbl" x="272" y="254">ZEMNÍ PRÁCE</text><text class="d-lbl" x="378" y="254">NOVOSTAVBY</text>
-              </g>
-              <text class="d-lbl" x="52" y="282">C — REFERENCE</text>
-              <rect x="52" y="288" width="133" height="52" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
-              <rect x="193" y="288" width="133" height="52" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
-              <rect x="335" y="288" width="133" height="52" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
-              <!-- phone -->
-              <rect class="d-line" x="508" y="128" width="104" height="222" rx="12" fill="var(--paper)"/>
-              <line class="d-thin" x1="508" y1="148" x2="612" y2="148"/>
-              <rect class="d-solid" x="518" y="135" width="30" height="6"/>
-              <path class="d-thin" d="M592 135h10M592 138.5h10M592 142h10"/>
-              <rect x="518" y="156" width="84" height="66" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
-              <rect class="d-solid" x="518" y="230" width="72" height="8"/>
-              <rect class="d-solid" x="518" y="242" width="50" height="8"/>
-              <rect class="d-new" x="518" y="258" width="44" height="12"/>
-              <rect class="d-soft" x="518" y="278" width="40" height="30"/><rect class="d-soft" x="562" y="278" width="40" height="30"/>
-              <rect class="d-soft" x="518" y="312" width="40" height="30"/><rect class="d-soft" x="562" y="312" width="40" height="30"/>
-              <path class="d-dim" d="M508 362v12M612 362v12M508 368h104"/>
-              <rect x="544" y="360" width="32" height="16" fill="var(--paper)"/>
-              <text class="d-dimtxt" x="560" y="372" text-anchor="middle">390</text>
-            </svg>
+            <div class="shot">
+              <div class="kota mono" aria-hidden="true"><span>1440 px</span></div>
+              <div class="shot-desk browser">
+                <div class="bar"><i></i><i></i><i></i><span class="url">dextra-mb.cz</span></div>
+                <img src="img/dextra-desktop.webp" width="1440" height="900" alt="Úvodní stránka webu DEXTRA na počítači" loading="lazy" decoding="async">
+              </div>
+              <div class="shot-phone">
+                <img src="img/dextra-mobile.webp" width="780" height="1500" alt="Web DEXTRA na mobilu" loading="lazy" decoding="async">
+              </div>
+            </div>
           </div>
           <div class="p-info">
             <p class="mono">Realizace · stavebnictví</p>
             <h3>DEXTRA Mladá Boleslav</h3>
-            <p>Nový web stavební firmy, která má za sebou přes sto dokončených zakázek. Haly, rekonstrukce, zemní práce i novostavby jsou teď přehledně na jednom místě a návštěvník se z úvodní stránky dostane k poptávce na pár kliknutí.</p>
+            <p>Nový web stavební firmy z Mladé Boleslavi s více než stovkou dokončených zakázek. Bourací práce, dopravní stavitelství, stavební služby i údržba objektů a zahrad mají přehledné stránky a návštěvník se z úvodu dostane ke kontaktu jedním kliknutím.</p>
             <dl class="stamp">
               <div><dt>Investor</dt><dd>DEXTRA MLADÁ BOLESLAV s.r.o.</dd></div>
               <div><dt>Obor</dt><dd>Stavební firma</dd></div>
-              <div><dt>Rozsah</dt><dd>Služby, reference, kontakty</dd></div>
+              <div><dt>Rozsah</dt><dd>O nás, služby, projekty, kariéra</dd></div>
               <div><dt>Měřítko</dt><dd>1 : 1 na mobilu i počítači</dd></div>
             </dl>
             <a class="btn btn-ghost" href="https://dextra-mb.cz" target="_blank" rel="noopener">dextra-mb.cz ↗</a>
@@ -441,52 +419,16 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
         <!-- PK PERITA -->
         <article class="project">
           <div class="drawing">
-            <svg viewBox="0 0 640 400" role="img" aria-label="Technický výkres rozvržení webu PK PERITA na počítači a mobilu">
-              <defs>
-                <pattern id="hatch-pk" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" class="d-hatch-line"/></pattern>
-              </defs>
-              <path class="d-dim" d="M40 24v12M480 24v12M40 30h440"/>
-              <rect x="232" y="22" width="56" height="16" fill="var(--paper)"/>
-              <text class="d-dimtxt" x="260" y="34" text-anchor="middle">1440</text>
-              <rect class="d-line" x="40" y="50" width="440" height="300"/>
-              <line class="d-thin" x1="40" y1="72" x2="480" y2="72"/>
-              <rect class="d-solid" x="52" y="58" width="64" height="7"/>
-              <rect class="d-soft" x="270" y="59" width="30" height="5"/><rect class="d-soft" x="308" y="59" width="30" height="5"/><rect class="d-soft" x="346" y="59" width="30" height="5"/><rect class="d-soft" x="384" y="59" width="22" height="5"/>
-              <rect class="d-new" x="418" y="56" width="50" height="11"/>
-              <text class="d-lbl" x="52" y="92">A — ÚVOD</text>
-              <rect class="d-solid" x="52" y="104" width="220" height="13"/>
-              <rect class="d-solid" x="52" y="122" width="170" height="13"/>
-              <rect class="d-soft" x="52" y="144" width="200" height="5"/><rect class="d-soft" x="52" y="153" width="180" height="5"/><rect class="d-soft" x="52" y="162" width="150" height="5"/>
-              <rect class="d-new" x="52" y="176" width="70" height="15"/>
-              <rect class="d-line" x="130" y="176" width="70" height="15"/>
-              <circle cx="390" cy="140" r="54" fill="url(#hatch-pk)" stroke="var(--ink-2)" stroke-width=".8"/>
-              <path class="d-dim" d="M336 208h108M336 203v10M444 203v10"/>
-              <text class="d-lbl" x="52" y="226">B — ÚČETNICTVÍ · MZDY · HR</text>
-              <rect class="d-soft" x="52" y="234" width="132" height="58"/><rect class="d-soft" x="194" y="234" width="132" height="58"/><rect class="d-soft" x="336" y="234" width="132" height="58"/>
-              <circle class="d-line" cx="68" cy="252" r="8"/><circle class="d-line" cx="210" cy="252" r="8"/><circle class="d-line" cx="352" cy="252" r="8"/>
-              <rect class="d-solid" x="60" y="268" width="70" height="6"/><rect class="d-solid" x="202" y="268" width="70" height="6"/><rect class="d-solid" x="344" y="268" width="70" height="6"/>
-              <rect class="d-soft" x="60" y="279" width="100" height="4"/><rect class="d-soft" x="202" y="279" width="100" height="4"/><rect class="d-soft" x="344" y="279" width="100" height="4"/>
-              <text class="d-lbl" x="52" y="310">C — KONTAKT</text>
-              <rect class="d-soft" x="52" y="316" width="416" height="24"/>
-              <rect class="d-solid" x="62" y="325" width="140" height="7"/>
-              <rect class="d-new" x="396" y="321" width="62" height="14"/>
-              <!-- phone -->
-              <rect class="d-line" x="508" y="128" width="104" height="222" rx="12" fill="var(--paper)"/>
-              <line class="d-thin" x1="508" y1="148" x2="612" y2="148"/>
-              <rect class="d-solid" x="518" y="135" width="36" height="6"/>
-              <path class="d-thin" d="M592 135h10M592 138.5h10M592 142h10"/>
-              <rect class="d-solid" x="518" y="160" width="80" height="9"/>
-              <rect class="d-solid" x="518" y="173" width="60" height="9"/>
-              <rect class="d-soft" x="518" y="188" width="84" height="4"/><rect class="d-soft" x="518" y="196" width="70" height="4"/>
-              <rect class="d-new" x="518" y="208" width="48" height="12"/>
-              <rect class="d-soft" x="518" y="230" width="84" height="30"/>
-              <rect class="d-soft" x="518" y="266" width="84" height="30"/>
-              <rect class="d-soft" x="518" y="302" width="84" height="30"/>
-              <circle class="d-line" cx="528" cy="245" r="5"/><circle class="d-line" cx="528" cy="281" r="5"/><circle class="d-line" cx="528" cy="317" r="5"/>
-              <path class="d-dim" d="M508 362v12M612 362v12M508 368h104"/>
-              <rect x="544" y="360" width="32" height="16" fill="var(--paper)"/>
-              <text class="d-dimtxt" x="560" y="372" text-anchor="middle">390</text>
-            </svg>
+            <div class="shot">
+              <div class="kota mono" aria-hidden="true"><span>1440 px</span></div>
+              <div class="shot-desk browser">
+                <div class="bar"><i></i><i></i><i></i><span class="url">pkperita.cz</span></div>
+                <img src="img/pkperita-desktop.webp" width="1440" height="900" alt="Úvodní stránka webu PK PERITA na počítači" loading="lazy" decoding="async">
+              </div>
+              <div class="shot-phone">
+                <img src="img/pkperita-mobile.webp" width="780" height="1500" alt="Web PK PERITA na mobilu" loading="lazy" decoding="async">
+              </div>
+            </div>
           </div>
           <div class="p-info">
             <p class="mono">Realizace · účetnictví a HR</p>
@@ -722,7 +664,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
 
 <footer>
   <div class="wrap mono">
-    <span>© <span id="yr">2026</span> Nový stav · přestavby webů</span>
+    <span>© <span id="yr">2026</span> WebDoctor · přestavby webů</span>
     <span>Výkres zpracoval: Emin Petlača</span>
   </div>
 </footer>

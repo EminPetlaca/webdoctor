@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nový stav – přestavby webů</title>
+<meta name="description" content="Přestavujeme zastaralé firemní weby na rychlé a moderní stránky, které fungují na mobilu a přivádějí zákazníky. Mladá Boleslav.">
+<meta property="og:title" content="Nový stav – přestavby webů">
+<meta property="og:description" content="Přestavby a rekonstrukce firemních webů. Realizace, koncepty a postup.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta name="theme-color" content="#16191D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316191D'/%3E%3Cpath d='M9 24V8h7a5 5 0 0 1 0 10h-7' fill='none' stroke='%23F1F2EE' stroke-width='3'/%3E%3Crect x='20' y='20' width='4' height='4' fill='%23CF2730'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+/* Layout: a renovation drawing set — paper grid, "původní stav" (yellow, demolished) vs "nový stav" (red, new) as the only accents, title blocks on every project. */
+:root{
+  --paper:#F1F2EE; --paper-2:#E5E7E1; --card:#FAFAF8; --ink:#16191D; --ink-2:#555B62; --line:#C7CBC3; --grid:rgba(22,25,29,.055);
+  --new:#CF2730; --new-ink:#FFFFFF; --demo:#E3B21A;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --gutter:clamp(16px,4vw,48px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111316; --paper-2:#1A1D21; --card:#16191C; --ink:#ECEDE8; --ink-2:#A3A9AF; --line:#2F343A; --grid:rgba(236,237,232,.045);
+    --new:#FF4D55; --new-ink:#16191D; --demo:#F2C63F; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111316; --paper-2:#1A1D21; --card:#16191C; --ink:#ECEDE8; --ink-2:#A3A9AF; --line:#2F343A; --grid:rgba(236,237,232,.045);
+  --new:#FF4D55; --new-ink:#16191D; --demo:#F2C63F; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-stretch:112%;font-weight:800;line-height:1.02;letter-spacing:-.01em;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.mono{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+:focus-visible{outline:2px solid var(--new);outline-offset:3px}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand b{font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1.15rem;letter-spacing:.02em}
+.brand b i{font-style:normal;color:var(--new)}
+.brand span{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-2);letter-spacing:.04em}
+.nav{display:flex;align-items:center;gap:26px;font-size:.92rem}
+.nav a{text-decoration:none;color:var(--ink-2)}
+.nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-body);font-weight:600;font-size:.95rem;padding:12px 20px;border-radius:4px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s ease,background .15s ease}
+.btn-new{background:var(--new);color:var(--new-ink)}
+.btn-new:hover{transform:translateY(-1px)}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.nav .btn{color:var(--new-ink);padding:9px 16px;font-size:.88rem}
+@media (max-width:760px){.nav a:not(.btn){display:none}.brand span{display:none}}
+
+/* Hero */
+.hero{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:center;padding-block:clamp(48px,8vw,96px)}
+.hero h1{font-size:clamp(2.6rem,6.2vw,5.4rem);margin-block:18px 22px}
+.hero h1 em{font-style:normal;color:var(--new)}
+.lead{font-size:clamp(1.02rem,1.4vw,1.15rem);color:var(--ink-2);max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:34px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:22px;height:12px;border:1px solid var(--ink);display:inline-block}
+.sw-demo{background:repeating-linear-gradient(135deg,var(--demo) 0 3px,transparent 3px 6px)}
+.sw-new{background:var(--new);border-color:var(--new)}
+@media (max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
+
+/* Browser frame */
+.browser{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 1px 0 var(--line),0 24px 48px -28px rgba(0,0,0,.35)}
+.bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line)}
+.bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.bar .url{margin-left:10px;flex:1;min-width:0;font-family:var(--f-mono);font-size:.72rem;color:var(--ink-2);background:var(--paper);border-radius:4px;padding:3px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock{position:relative;aspect-ratio:16/10;max-width:100%;container-type:inline-size;overflow:hidden;user-select:none}
+.layer{position:absolute;inset:0}
+
+/* Compare slider */
+.compare{--pos:50%}
+.compare .before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.compare .before::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(227,178,26,.16) 0 6px,transparent 6px 14px);pointer-events:none}
+.divider{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--new);pointer-events:none}
+.divider::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;transform:translate(-50%,-50%);border-radius:50%;background:var(--new);box-shadow:0 0 0 4px rgba(255,255,255,.75);
+  -webkit-mask:none}
+.divider b{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;color:#fff;font:600 14px/1 var(--f-mono);letter-spacing:-.05em}
+.compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.compare:has(input:focus-visible){outline:2px solid var(--new);outline-offset:3px}
+.tag{position:absolute;top:10px;z-index:2;font:500 10px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border-radius:3px;pointer-events:none}
+.tag-demo{left:10px;background:var(--demo);color:#16191D}
+.tag-new{right:10px;background:var(--new);color:#fff}
+.caption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px}
+
+/* Sections */
+section{padding-block:clamp(64px,9vw,120px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.4rem);margin-top:12px}
+.sec-head p{color:var(--ink-2);max-width:32em}
+@media (max-width:760px){.sec-head{grid-template-columns:minmax(0,1fr)}}
+
+/* Real projects */
+.projects{display:grid;gap:clamp(28px,4vw,48px)}
+.project{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);border:1px solid var(--line);background:var(--card);border-radius:6px;overflow:hidden}
+.drawing{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px;border-right:1px solid var(--line);padding:clamp(12px,2.4vw,28px);display:grid;place-items:center;min-width:0}
+.drawing svg{width:100%;height:auto;max-width:640px;display:block}
+.d-line{fill:none;stroke:var(--ink);stroke-width:1.2}
+.d-thin{fill:none;stroke:var(--ink-2);stroke-width:.8}
+.d-solid{fill:var(--ink)}
+.d-soft{fill:var(--paper-2);stroke:var(--ink-2);stroke-width:.8}
+.d-new{fill:var(--new)}
+.d-dim{stroke:var(--new);stroke-width:.9;fill:none}
+.d-dimtxt{fill:var(--new);font:500 10px var(--f-mono);letter-spacing:.06em}
+.d-lbl{fill:var(--ink-2);font:500 7.5px var(--f-mono);letter-spacing:.1em}
+.d-hatch-line{stroke:var(--ink-2);stroke-width:.7}
+.p-info{padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.p-info h3{font-size:clamp(1.6rem,2.6vw,2.2rem)}
+.p-info p{color:var(--ink-2)}
+.p-info .btn{align-self:flex-start;margin-top:auto}
+.stamp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--ink);margin:0}
+.stamp div{background:var(--card);padding:9px 12px;min-width:0}
+.stamp dt{font:500 .66rem/1.3 var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.stamp dd{margin:2px 0 0;font-weight:500;font-size:.92rem;line-height:1.35}
+@media (max-width:900px){.project{grid-template-columns:minmax(0,1fr)}.drawing{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* Concepts */
+.concepts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.5vw,32px)}
+@media (max-width:1020px){.concepts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.concepts{grid-template-columns:minmax(0,1fr)}}
+.concept{display:flex;flex-direction:column;gap:16px;min-width:0}
+.concept .layer{transition:opacity .35s ease}
+.concept[data-view="after"] .before{opacity:0}
+.concept[data-view="before"] .after{opacity:0}
+.concept .tag-demo,.concept .tag-new{transition:opacity .35s ease}
+.concept[data-view="after"] .tag-demo{opacity:0}
+.concept[data-view="before"] .tag-new{opacity:0}
+.c-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.c-head h3{font-size:1.35rem;font-stretch:100%}
+.switch{display:inline-grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink);border-radius:4px;overflow:hidden;align-self:flex-start}
+.switch button{font:500 .75rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:9px 12px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.switch button[aria-pressed="true"][data-v="after"]{background:var(--new);color:#fff}
+.switch button[aria-pressed="true"][data-v="before"]{background:var(--demo);color:#16191D}
+.concept ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.93rem;color:var(--ink-2)}
+.concept li{display:grid;grid-template-columns:14px 1fr;gap:8px}
+.concept li::before{content:"";width:8px;height:8px;background:var(--new);margin-top:.55em}
+.note{margin-top:28px}
+
+/* Process */
+.process{border-top:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--ink);margin:0;padding:0;list-style:none}
+.steps li{padding:22px 22px 6px 0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.steps li + li{padding-left:22px;border-left:1px solid var(--line)}
+.steps .num{font:500 .8rem var(--f-mono);color:var(--new)}
+.steps h3{font-size:1.25rem;font-stretch:100%}
+.steps p{color:var(--ink-2);font-size:.95rem}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.steps li:nth-child(3){padding-left:0;border-left:0}.steps li{padding-bottom:24px}}
+@media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}.steps li + li{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;margin:0}
+.services div{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:16px;padding-block:20px;border-top:1px solid var(--line)}
+.services dt{font-family:var(--f-display);font-stretch:100%;font-weight:700;font-size:1.1rem;line-height:1.3}
+.services dd{margin:0;color:var(--ink-2);font-size:.95rem}
+@media (max-width:760px){.services{grid-template-columns:minmax(0,1fr)}.services div{grid-template-columns:minmax(0,1fr);gap:4px}}
+
+/* Contact */
+.contact{padding-block:0 clamp(48px,7vw,96px)}
+.panel{background:var(--ink);color:var(--paper);border-radius:8px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px 56px;align-items:end}
+.panel h2{font-size:clamp(2rem,4.6vw,3.6rem)}
+.panel p{color:color-mix(in srgb,var(--paper) 72%,transparent);margin-top:18px;max-width:30em}
+.panel .mono{color:color-mix(in srgb,var(--paper) 60%,transparent)}
+.mail{display:flex;flex-direction:column;gap:14px;min-width:0}
+.mail-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid color-mix(in srgb,var(--paper) 30%,transparent);border-radius:4px;padding:8px 8px 8px 16px}
+.mail-row output{flex:1;min-width:0;font-family:var(--f-mono);font-size:.95rem;overflow-wrap:anywhere;user-select:all}
+.mail-row button{font:500 .75rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;border-radius:3px;border:0;background:var(--paper);color:var(--ink);cursor:pointer}
+.panel .btn-new{align-self:flex-start}
+@media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}}
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:24px}
+
+/* ---------- Mock: the dated "before" site ---------- */
+.old{position:absolute;inset:0;background:var(--o-bg,#c6c6c6);font-family:"Times New Roman",Times,serif;color:#000;padding:1.6cqw 7cqw;display:flex;flex-direction:column}
+.o-wrap{background:#fff;border:.3cqw solid #808080;flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.o-head{background:var(--o-head,linear-gradient(#3a62d6,#001d78));color:#ff0;font-family:"Comic Sans MS","Comic Neue","Chalkboard SE",cursive;font-weight:700;font-size:3.5cqw;text-align:center;padding:1.3cqw 1cqw;text-shadow:.25cqw .25cqw 0 #000;line-height:1.1}
+.o-head small{display:block;font-family:Arial,sans-serif;font-size:1.45cqw;color:#fff;text-shadow:none;font-weight:400;margin-top:.4cqw}
+.o-nav{display:flex;flex-wrap:wrap;gap:.4cqw;padding:.6cqw;background:#e2e2e2;justify-content:center;border-bottom:.2cqw solid #999}
+.o-nav span{border:.25cqw outset #f4f4f4;background:#d4d0c8;padding:.25cqw 1.3cqw;font-family:Arial,sans-serif;font-size:1.45cqw}
+.o-body{display:grid;grid-template-columns:27% 1fr;gap:1.2cqw;padding:1.2cqw;flex:1;min-height:0}
+.o-side{background:#ffffcc;border:.2cqw dashed #999;padding:.9cqw;font-size:1.4cqw;line-height:1.3;font-family:Verdana,sans-serif}
+.o-side b{color:#e00;display:block;margin-bottom:.4cqw}
+.o-side u{color:#00e;display:block;margin-top:.8cqw}
+.o-main{font-size:1.55cqw;line-height:1.3}
+.o-main .o-h{font-size:2.3cqw;font-weight:700;color:var(--o-title,#002080);margin-bottom:.6cqw;text-decoration:underline}
+.o-main p{margin:0 0 .8cqw}
+.o-main a{color:#00e;text-decoration:underline}
+.o-img{float:right;width:32%;aspect-ratio:4/3;background:repeating-linear-gradient(45deg,#b8b8b8 0 .7cqw,#cdcdcd .7cqw 1.4cqw);border:.35cqw ridge #888;margin:0 0 .6cqw 1cqw;display:grid;place-items:center;font-size:1.2cqw;color:#444;font-family:Arial,sans-serif}
+.o-foot{padding:.6cqw;text-align:center;font-family:Arial,sans-serif;font-size:1.15cqw;color:#444;background:#eee;border-top:.2cqw solid #999}
+.o-count span{background:#000;color:#3f3;font-family:"Courier New",monospace;padding:0 .25cqw;margin:0 .08cqw}
+
+/* ---------- Mock: shared new-site bits ---------- */
+.nw{position:absolute;inset:0;display:flex;flex-direction:column;font-family:var(--f-body)}
+.n-nav{display:flex;align-items:center;justify-content:space-between;gap:2cqw;padding:2.4cqw 4.5cqw}
+.n-links{display:flex;gap:2.6cqw;font-size:1.45cqw;opacity:.78}
+
+/* Bakery */
+.kv{background:#2A1A10;color:#F5E6CC}
+.kv-logo{font-family:"Fraunces",Georgia,serif;font-style:italic;font-weight:600;font-size:3.2cqw;color:#E8AE5B}
+.kv-btn{background:#E8AE5B;color:#2A1A10;font-weight:600;font-size:1.35cqw;padding:.9cqw 2cqw;border-radius:99px;white-space:nowrap}
+.kv-hero{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:2cqw;padding:0 4.5cqw;flex:1}
+.kv-eye{font-size:1.2cqw;letter-spacing:.16em;text-transform:uppercase;color:#E8AE5B}
+.kv-h{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:5.4cqw;line-height:1.02;margin:1.2cqw 0 1.4cqw;letter-spacing:-.01em}
+.kv-p{font-size:1.5cqw;line-height:1.5;opacity:.78;margin-bottom:2.2cqw;max-width:36cqw}
+.kv-btn-lg{font-size:1.5cqw;padding:1.2cqw 2.4cqw;display:inline-block}
+.kv-plate{width:31cqw;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 45%,#4B2F1D,#2A1A10 70%);display:grid;place-items:center;margin-inline:auto}
+.kv-loaf{width:22cqw;height:13.5cqw;border-radius:50%;background:radial-gradient(ellipse at 40% 30%,#EDBF7C,#B9742F 55%,#7A4318);box-shadow:0 2.2cqw 3.4cqw rgba(0,0,0,.5);position:relative;transform:rotate(-8deg)}
+.kv-loaf::before{content:"";position:absolute;inset:22% 16%;border-radius:50%;background:repeating-linear-gradient(115deg,transparent 0 3.4cqw,rgba(250,225,175,.75) 3.4cqw 3.9cqw)}
+.kv-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2cqw;padding:0 4.5cqw 3cqw}
+.kv-strip div{background:#3A2416;border:1px solid #533521;border-radius:1cqw;padding:1.3cqw 1.6cqw;display:flex;justify-content:space-between;font-size:1.35cqw}
+.kv-strip span{color:#E8AE5B}
+
+/* Car service */
+.ve{background:#14171A;color:#E9ECEF;font-family:var(--f-display)}
+.ve .n-nav{border-bottom:.3cqw solid #FF6A13}
+.ve-logo{font-stretch:75%;font-weight:900;font-size:3.4cqw;letter-spacing:.04em;display:flex;align-items:center;gap:1cqw}
+.ve-logo::before{content:"";width:2.4cqw;height:2.4cqw;background:#FF6A13;transform:rotate(45deg)}
+.ve-hours{font-family:var(--f-mono);font-size:1.25cqw;color:#9AA3AB}
+.ve-hero{display:grid;grid-template-columns:1.15fr 1fr;gap:3cqw;padding:3.6cqw 4.5cqw;flex:1;align-items:center}
+.ve-eye{font-family:var(--f-mono);font-size:1.2cqw;color:#FF6A13;letter-spacing:.08em;text-transform:uppercase}
+.ve-h{font-stretch:72%;font-weight:900;font-size:7.2cqw;line-height:.92;text-transform:uppercase;margin:1.2cqw 0 1.6cqw}
+.ve-p{font-family:var(--f-body);font-size:1.5cqw;color:#AEB6BD;line-height:1.5;margin-bottom:1.8cqw}
+.ve-pills{display:flex;flex-wrap:wrap;gap:.8cqw}
+.ve-pills span{border:1px solid #39414A;border-radius:99px;font-family:var(--f-body);font-size:1.2cqw;padding:.6cqw 1.4cqw}
+.ve-card{background:#1E2227;border:1px solid #2E353D;border-radius:1.4cqw;padding:2.2cqw;font-family:var(--f-body)}
+.ve-card .t{font-weight:600;font-size:1.7cqw;margin-bottom:1.4cqw}
+.ve-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.7cqw;margin-bottom:1.2cqw}
+.ve-grid span{border:1px solid #39414A;border-radius:.7cqw;text-align:center;padding:.8cqw 0;font-size:1.15cqw;line-height:1.3;color:#C9D0D6}
+.ve-grid span b{display:block;font-size:1.7cqw;color:#fff}
+.ve-grid .on{background:#FF6A13;border-color:#FF6A13;color:#14171A}
+.ve-grid .on b{color:#14171A}
+.ve-times{grid-template-columns:repeat(4,1fr)}
+.ve-go{background:#FF6A13;color:#14171A;font-weight:700;text-align:center;border-radius:.8cqw;padding:1.2cqw;font-size:1.5cqw}
+
+/* Physio */
+.fy{background:#E9F2EE;color:#0F3A34}
+.fy-logo{display:flex;align-items:center;gap:1cqw;font-weight:600;font-size:2.4cqw}
+.fy-logo i{width:2.6cqw;height:2.6cqw;border-radius:50%;border:.5cqw solid #13806B;border-right-color:transparent;transform:rotate(-30deg)}
+.fy-btn{background:#13806B;color:#fff;font-weight:600;font-size:1.35cqw;padding:1cqw 2cqw;border-radius:.8cqw;white-space:nowrap}
+.fy-hero{display:grid;grid-template-columns:1.05fr 1fr;gap:3cqw;align-items:center;padding:1cqw 4.5cqw 3cqw;flex:1}
+.fy-h{font-weight:600;font-size:5.2cqw;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.6cqw}
+.fy-p{font-size:1.5cqw;line-height:1.55;color:#3D615B;margin-bottom:2.2cqw}
+.fy-row{display:flex;align-items:center;gap:1.6cqw;flex-wrap:wrap}
+.fy-free{font-size:1.25cqw;display:flex;align-items:center;gap:.7cqw;color:#3D615B}
+.fy-free::before{content:"";width:1cqw;height:1cqw;border-radius:50%;background:#2BB673}
+.fy-stack{position:relative;display:grid;gap:1.2cqw}
+.fy-stack::before{content:"";position:absolute;width:30cqw;aspect-ratio:1;border-radius:50%;background:#CDE5DB;right:-4cqw;top:50%;transform:translateY(-50%)}
+.fy-card{position:relative;background:#fff;border-radius:1.4cqw;padding:1.6cqw 2cqw;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1cqw 2.4cqw -1cqw rgba(15,58,52,.25);font-size:1.4cqw}
+.fy-card b{display:block;font-size:1.6cqw;font-weight:600}
+.fy-card span{color:#5C7C76}
+.fy-card em{font-style:normal;font-weight:600;color:#13806B}
+
+/* Guesthouse */
+.ps{background:linear-gradient(180deg,#F7DDB3 0%,#EFB98C 42%,#B98B86 70%,#6F7E98 100%);color:#16261F}
+.ps-logo{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:2.9cqw}
+.ps-hero{padding:2.5cqw 4.5cqw;position:relative;z-index:2}
+.ps-eye{font-size:1.2cqw;letter-spacing:.16em;text-transform:uppercase}
+.ps-h{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:6.4cqw;line-height:1;margin-top:1cqw;max-width:50cqw}
+.ps-land{position:absolute;inset:0;pointer-events:none}
+.ps-land div{position:absolute;left:0;right:0;bottom:0}
+.ps-far{height:46%;background:#7C8597;clip-path:polygon(0 60%,12% 40%,22% 52%,36% 28%,50% 46%,63% 30%,78% 50%,90% 36%,100% 46%,100% 100%,0 100%)}
+.ps-rock{height:62%;background:#3E5546;clip-path:polygon(52% 100%,53% 30%,55% 22%,57% 30%,58% 100%,60% 100%,61% 12%,63% 6%,65% 14%,66% 100%,69% 100%,70% 38%,72% 32%,73.5% 40%,74% 100%,79% 100%,80% 24%,82% 18%,84% 26%,85% 100%)}
+.ps-near{height:30%;background:#1E3328;clip-path:polygon(0 30%,15% 18%,30% 34%,46% 16%,60% 30%,75% 12%,88% 28%,100% 18%,100% 100%,0 100%)}
+.ps-book{position:absolute;left:4.5cqw;right:4.5cqw;bottom:3.4cqw;z-index:2;background:#fff;border-radius:1.2cqw;display:grid;grid-template-columns:repeat(3,1fr) auto;gap:0;align-items:stretch;box-shadow:0 1.4cqw 3cqw -1cqw rgba(0,0,0,.4);font-size:1.3cqw;overflow:hidden}
+.ps-book span{padding:1.3cqw 2cqw;border-right:1px solid #E3E3DE;line-height:1.35}
+.ps-book span small{display:block;font-size:1cqw;letter-spacing:.1em;text-transform:uppercase;color:#7A847F}
+.ps-book b{background:#1E3328;color:#F7DDB3;display:grid;place-items:center;padding:0 2.6cqw;font-size:1.4cqw}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#uvod"><b>NOVÝ STAV<i>.</i></b><span>přestavby webů</span></a>
+    <nav class="nav" aria-label="Hlavní navigace">
+      <a href="#realizace">Realizace</a>
+      <a href="#koncepty">Koncepty</a>
+      <a href="#postup">Postup</a>
+      <a class="btn btn-new" href="#kontakt">Poptat přestavbu</a>
+    </nav>
+  </div>
+</header>
+
+<main id="uvod">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="mono">Přestavby a rekonstrukce webů · Mladá Boleslav</p>
+        <h1>Váš web potřebuje <em>rekonstrukci.</em></h1>
+        <p class="lead">Přestavujeme zastaralé firemní weby na rychlé a moderní stránky, které fungují na mobilu a přivádějí zákazníky. Převezmeme obsah, navrhneme nový vzhled a postaráme se o spuštění na vaší doméně.</p>
+        <div class="hero-actions">
+          <a class="btn btn-new" href="#kontakt">Chci nový web</a>
+          <a class="btn btn-ghost" href="#realizace">Ukázky práce</a>
+        </div>
+        <div class="legend mono" aria-label="Legenda">
+          <span><i class="sw sw-demo"></i>Původní stav</span>
+          <span><i class="sw sw-new"></i>Nový stav</span>
+        </div>
+      </div>
+
+      <figure style="margin:0">
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span class="url">pekarstvi-kvasek.cz</span></div>
+          <div class="mock compare" id="hero-compare">
+            <span class="tag tag-demo">Původní stav</span>
+            <span class="tag tag-new">Nový stav</span>
+            <div class="layer after" aria-hidden="true">
+              <div class="nw kv">
+                <div class="n-nav"><span class="kv-logo">Kvásek</span><span class="n-links"><span>Pečivo</span><span>Prodejny</span><span>O nás</span></span><span class="kv-btn">Objednat</span></div>
+                <div class="kv-hero">
+                  <div>
+                    <div class="kv-eye">Pečeme každé ráno od 4:00</div>
+                    <div class="kv-h">Chléb, který voní až na ulici.</div>
+                    <div class="kv-p">Kváskový chléb, rohlíky a sladké pečivo z vlastní pece. Objednejte večer, vyzvedněte ráno.</div>
+                    <span class="kv-btn kv-btn-lg">Objednat na zítra →</span>
+                  </div>
+                  <div class="kv-plate"><div class="kv-loaf"></div></div>
+                </div>
+                <div class="kv-strip"><div><b>Kváskový chléb</b><span>89 Kč</span></div><div><b>Máslový croissant</b><span>39 Kč</span></div><div><b>Skořicový šnek</b><span>45 Kč</span></div></div>
+              </div>
+            </div>
+            <div class="layer before" aria-hidden="true">
+              <div class="old">
+                <div class="o-wrap">
+                  <div class="o-head">PEKAŘSTVÍ KVÁSEK<small>Vítejte na našich internetových stránkách!!!</small></div>
+                  <div class="o-nav"><span>Úvod</span><span>O nás</span><span>Ceník</span><span>Fotogalerie</span><span>Kniha návštěv</span><span>Kontakt</span></div>
+                  <div class="o-body">
+                    <div class="o-side"><b>NOVINKY:</b>12.3.2014 – Nově pečeme rohlíky i v sobotu!<br><br>1.9.2013 – Spuštění nových stránek<u>Archiv novinek</u></div>
+                    <div class="o-main">
+                      <div class="o-h">Vítejte</div>
+                      <div class="o-img">[ foto ]</div>
+                      <p>Jsme tradiční pekařství s dlouholetou tradicí. Nabízíme široký sortiment pečiva za příznivé ceny. Pro ceník <a>klikněte zde</a>.</p>
+                      <p>Objednávky přijímáme telefonicky nebo e-mailem. Ceník ke stažení ve formátu <a>.doc</a>.</p>
+                      <p>Stránky jsou ve výstavbě.</p>
+                    </div>
+                  </div>
+                  <div class="o-foot">Počet návštěv: <span class="o-count"><span>0</span><span>0</span><span>4</span><span>2</span><span>1</span><span>7</span></span> · Optimalizováno pro Internet Explorer, rozlišení 1024×768</div>
+                </div>
+              </div>
+            </div>
+            <div class="divider"><b>‹ ›</b></div>
+            <input type="range" id="hero-range" min="0" max="100" value="50" aria-label="Posuňte pro porovnání původního a nového webu">
+          </div>
+        </div>
+        <figcaption class="caption mono"><span>Výkres č. 01 · Pekařství Kvásek (koncept)</span><span>← posuňte jezdcem →</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- REAL PROJECTS -->
+  <section id="realizace">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="mono">Realizace</p><h2>Weby, které už běží</h2></div>
+        <p>Skutečné přestavby pro skutečné firmy. Každý projekt začínáme zaměřením stávajícího stavu a končíme spuštěním na doméně klienta.</p>
+      </div>
+
+      <div class="projects">
+        <!-- DEXTRA -->
+        <article class="project">
+          <div class="drawing">
+            <svg viewBox="0 0 640 400" role="img" aria-label="Technický výkres rozvržení webu DEXTRA na počítači a mobilu">
+              <defs>
+                <pattern id="hatch-dx" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" class="d-hatch-line"/></pattern>
+              </defs>
+              <!-- dimension: desktop width -->
+              <path class="d-dim" d="M40 24v12M480 24v12M40 30h440"/>
+              <rect x="232" y="22" width="56" height="16" fill="var(--paper)"/>
+              <text class="d-dimtxt" x="260" y="34" text-anchor="middle">1440</text>
+              <!-- desktop -->
+              <rect class="d-line" x="40" y="50" width="440" height="300"/>
+              <line class="d-thin" x1="40" y1="72" x2="480" y2="72"/>
+              <rect class="d-solid" x="52" y="58" width="52" height="7"/>
+              <rect class="d-soft" x="300" y="59" width="28" height="5"/><rect class="d-soft" x="336" y="59" width="28" height="5"/><rect class="d-soft" x="372" y="59" width="28" height="5"/>
+              <rect class="d-new" x="420" y="56" width="48" height="11"/>
+              <rect x="52" y="84" width="416" height="112" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
+              <rect x="60" y="100" width="210" height="80" fill="var(--paper)"/>
+              <text class="d-lbl" x="68" y="113">A — ÚVOD</text>
+              <rect class="d-solid" x="68" y="122" width="180" height="11"/>
+              <rect class="d-solid" x="68" y="138" width="120" height="11"/>
+              <rect class="d-new" x="68" y="158" width="64" height="14"/>
+              <text class="d-lbl" x="52" y="212">B — SLUŽBY</text>
+              <g>
+                <rect class="d-soft" x="52" y="218" width="98" height="46"/><rect class="d-soft" x="158" y="218" width="98" height="46"/><rect class="d-soft" x="264" y="218" width="98" height="46"/><rect class="d-soft" x="370" y="218" width="98" height="46"/>
+                <rect class="d-solid" x="60" y="228" width="50" height="6"/><rect class="d-solid" x="166" y="228" width="50" height="6"/><rect class="d-solid" x="272" y="228" width="50" height="6"/><rect class="d-solid" x="378" y="228" width="50" height="6"/>
+                <text class="d-lbl" x="60" y="254">HALY</text><text class="d-lbl" x="166" y="254">REKONSTRUKCE</text><text class="d-lbl" x="272" y="254">ZEMNÍ PRÁCE</text><text class="d-lbl" x="378" y="254">NOVOSTAVBY</text>
+              </g>
+              <text class="d-lbl" x="52" y="282">C — REFERENCE</text>
+              <rect x="52" y="288" width="133" height="52" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
+              <rect x="193" y="288" width="133" height="52" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
+              <rect x="335" y="288" width="133" height="52" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
+              <!-- phone -->
+              <rect class="d-line" x="508" y="128" width="104" height="222" rx="12" fill="var(--paper)"/>
+              <line class="d-thin" x1="508" y1="148" x2="612" y2="148"/>
+              <rect class="d-solid" x="518" y="135" width="30" height="6"/>
+              <path class="d-thin" d="M592 135h10M592 138.5h10M592 142h10"/>
+              <rect x="518" y="156" width="84" height="66" fill="url(#hatch-dx)" stroke="var(--ink-2)" stroke-width=".8"/>
+              <rect class="d-solid" x="518" y="230" width="72" height="8"/>
+              <rect class="d-solid" x="518" y="242" width="50" height="8"/>
+              <rect class="d-new" x="518" y="258" width="44" height="12"/>
+              <rect class="d-soft" x="518" y="278" width="40" height="30"/><rect class="d-soft" x="562" y="278" width="40" height="30"/>
+              <rect class="d-soft" x="518" y="312" width="40" height="30"/><rect class="d-soft" x="562" y="312" width="40" height="30"/>
+              <path class="d-dim" d="M508 362v12M612 362v12M508 368h104"/>
+              <rect x="544" y="360" width="32" height="16" fill="var(--paper)"/>
+              <text class="d-dimtxt" x="560" y="372" text-anchor="middle">390</text>
+            </svg>
+          </div>
+          <div class="p-info">
+            <p class="mono">Realizace · stavebnictví</p>
+            <h3>DEXTRA Mladá Boleslav</h3>
+            <p>Nový web stavební firmy, která má za sebou přes sto dokončených zakázek. Haly, rekonstrukce, zemní práce i novostavby jsou teď přehledně na jednom místě a návštěvník se z úvodní stránky dostane k poptávce na pár kliknutí.</p>
+            <dl class="stamp">
+              <div><dt>Investor</dt><dd>DEXTRA MLADÁ BOLESLAV s.r.o.</dd></div>
+              <div><dt>Obor</dt><dd>Stavební firma</dd></div>
+              <div><dt>Rozsah</dt><dd>Služby, reference, kontakty</dd></div>
+              <div><dt>Měřítko</dt><dd>1 : 1 na mobilu i počítači</dd></div>
+            </dl>
+            <a class="btn btn-ghost" href="https://dextra-mb.cz" target="_blank" rel="noopener">dextra-mb.cz ↗</a>
+          </div>
+        </article>
+
+        <!-- PK PERITA -->
+        <article class="project">
+          <div class="drawing">
+            <svg viewBox="0 0 640 400" role="img" aria-label="Technický výkres rozvržení webu PK PERITA na počítači a mobilu">
+              <defs>
+                <pattern id="hatch-pk" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" class="d-hatch-line"/></pattern>
+              </defs>
+              <path class="d-dim" d="M40 24v12M480 24v12M40 30h440"/>
+              <rect x="232" y="22" width="56" height="16" fill="var(--paper)"/>
+              <text class="d-dimtxt" x="260" y="34" text-anchor="middle">1440</text>
+              <rect class="d-line" x="40" y="50" width="440" height="300"/>
+              <line class="d-thin" x1="40" y1="72" x2="480" y2="72"/>
+              <rect class="d-solid" x="52" y="58" width="64" height="7"/>
+              <rect class="d-soft" x="270" y="59" width="30" height="5"/><rect class="d-soft" x="308" y="59" width="30" height="5"/><rect class="d-soft" x="346" y="59" width="30" height="5"/><rect class="d-soft" x="384" y="59" width="22" height="5"/>
+              <rect class="d-new" x="418" y="56" width="50" height="11"/>
+              <text class="d-lbl" x="52" y="92">A — ÚVOD</text>
+              <rect class="d-solid" x="52" y="104" width="220" height="13"/>
+              <rect class="d-solid" x="52" y="122" width="170" height="13"/>
+              <rect class="d-soft" x="52" y="144" width="200" height="5"/><rect class="d-soft" x="52" y="153" width="180" height="5"/><rect class="d-soft" x="52" y="162" width="150" height="5"/>
+              <rect class="d-new" x="52" y="176" width="70" height="15"/>
+              <rect class="d-line" x="130" y="176" width="70" height="15"/>
+              <circle cx="390" cy="140" r="54" fill="url(#hatch-pk)" stroke="var(--ink-2)" stroke-width=".8"/>
+              <path class="d-dim" d="M336 208h108M336 203v10M444 203v10"/>
+              <text class="d-lbl" x="52" y="226">B — ÚČETNICTVÍ · MZDY · HR</text>
+              <rect class="d-soft" x="52" y="234" width="132" height="58"/><rect class="d-soft" x="194" y="234" width="132" height="58"/><rect class="d-soft" x="336" y="234" width="132" height="58"/>
+              <circle class="d-line" cx="68" cy="252" r="8"/><circle class="d-line" cx="210" cy="252" r="8"/><circle class="d-line" cx="352" cy="252" r="8"/>
+              <rect class="d-solid" x="60" y="268" width="70" height="6"/><rect class="d-solid" x="202" y="268" width="70" height="6"/><rect class="d-solid" x="344" y="268" width="70" height="6"/>
+              <rect class="d-soft" x="60" y="279" width="100" height="4"/><rect class="d-soft" x="202" y="279" width="100" height="4"/><rect class="d-soft" x="344" y="279" width="100" height="4"/>
+              <text class="d-lbl" x="52" y="310">C — KONTAKT</text>
+              <rect class="d-soft" x="52" y="316" width="416" height="24"/>
+              <rect class="d-solid" x="62" y="325" width="140" height="7"/>
+              <rect class="d-new" x="396" y="321" width="62" height="14"/>
+              <!-- phone -->
+              <rect class="d-line" x="508" y="128" width="104" height="222" rx="12" fill="var(--paper)"/>
+              <line class="d-thin" x1="508" y1="148" x2="612" y2="148"/>
+              <rect class="d-solid" x="518" y="135" width="36" height="6"/>
+              <path class="d-thin" d="M592 135h10M592 138.5h10M592 142h10"/>
+              <rect class="d-solid" x="518" y="160" width="80" height="9"/>
+              <rect class="d-solid" x="518" y="173" width="60" height="9"/>
+              <rect class="d-soft" x="518" y="188" width="84" height="4"/><rect class="d-soft" x="518" y="196" width="70" height="4"/>
+              <rect class="d-new" x="518" y="208" width="48" height="12"/>
+              <rect class="d-soft" x="518" y="230" width="84" height="30"/>
+              <rect class="d-soft" x="518" y="266" width="84" height="30"/>
+              <rect class="d-soft" x="518" y="302" width="84" height="30"/>
+              <circle class="d-line" cx="528" cy="245" r="5"/><circle class="d-line" cx="528" cy="281" r="5"/><circle class="d-line" cx="528" cy="317" r="5"/>
+              <path class="d-dim" d="M508 362v12M612 362v12M508 368h104"/>
+              <rect x="544" y="360" width="32" height="16" fill="var(--paper)"/>
+              <text class="d-dimtxt" x="560" y="372" text-anchor="middle">390</text>
+            </svg>
+          </div>
+          <div class="p-info">
+            <p class="mono">Realizace · účetnictví a HR</p>
+            <h3>PK PERITA</h3>
+            <p>Rodinná firma pro účetnictví, daně, mzdy a personalistiku přešla z Webnode na vlastní vícestránkový web. Převzali jsme veškerý obsah, sjednotili vzhled všech stránek do jednoho designového systému a spustili web na původní doméně.</p>
+            <dl class="stamp">
+              <div><dt>Investor</dt><dd>PK PERITA s.r.o.</dd></div>
+              <div><dt>Obor</dt><dd>Účetnictví, mzdy a HR</dd></div>
+              <div><dt>Původní stav</dt><dd>Webnode</dd></div>
+              <div><dt>Nový stav</dt><dd>React · Vercel</dd></div>
+            </dl>
+            <a class="btn btn-ghost" href="https://pkperita.cz" target="_blank" rel="noopener">pkperita.cz ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEPTS -->
+  <section id="koncepty" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="mono">Koncepty</p><h2>Takhle by to mohlo vypadat u vás</h2></div>
+        <p>Ukázkové přestavby pro smyšlené firmy z různých oborů. Přepněte mezi původním a novým stavem a porovnejte rozdíl.</p>
+      </div>
+
+      <div class="concepts">
+        <!-- Autoservis -->
+        <article class="concept" data-view="after">
+          <div class="browser">
+            <div class="bar"><i></i><i></i><i></i><span class="url">autoservis-ventil.cz</span></div>
+            <div class="mock">
+              <span class="tag tag-demo">Původní stav</span>
+              <span class="tag tag-new">Nový stav</span>
+              <div class="layer before" aria-hidden="true">
+                <div class="old" style="--o-head:linear-gradient(#d22,#700);--o-title:#a00;--o-bg:#9a9a9a">
+                  <div class="o-wrap">
+                    <div class="o-head">AUTOSERVIS VENTIL<small>Opravy všech značek – nejlepší ceny v regionu!</small></div>
+                    <div class="o-nav"><span>Úvod</span><span>Služby</span><span>Ceník</span><span>Pneu</span><span>Kontakt</span></div>
+                    <div class="o-body">
+                      <div class="o-side"><b>AKCE!!!</b>Přezutí pneu jen 400,- Kč<br><br>Platí do 31.10.2015<u>Více info</u></div>
+                      <div class="o-main"><div class="o-h">O nás</div><div class="o-img">[ foto ]</div><p>Provádíme opravy osobních i užitkových vozidel. Termín si domluvte telefonicky v pracovní době.</p><p>Ceník služeb <a>zde</a> (PDF, 4 MB).</p></div>
+                    </div>
+                    <div class="o-foot">Počet návštěv: <span class="o-count"><span>0</span><span>1</span><span>8</span><span>0</span><span>5</span></span> · Webmaster: info@…</div>
+                  </div>
+                </div>
+              </div>
+              <div class="layer after" aria-hidden="true">
+                <div class="nw ve">
+                  <div class="n-nav"><span class="ve-logo">VENTIL</span><span class="n-links" style="font-family:var(--f-body)"><span>Služby</span><span>Ceník</span><span>Kontakt</span></span><span class="ve-hours">Po–Pá 7:00–17:00</span></div>
+                  <div class="ve-hero">
+                    <div>
+                      <div class="ve-eye">Autoservis · pneuservis · klimatizace</div>
+                      <div class="ve-h">Servis bez čekání na telefonu.</div>
+                      <div class="ve-p">Termín si vyberete online za dvě minuty. Cenu znáte předem.</div>
+                      <div class="ve-pills"><span>Diagnostika</span><span>Výměna oleje</span><span>Přezutí</span></div>
+                    </div>
+                    <div class="ve-card">
+                      <div class="t">Vyberte termín</div>
+                      <div class="ve-grid"><span>Po<b>14</b></span><span class="on">Út<b>15</b></span><span>St<b>16</b></span><span>Čt<b>17</b></span><span>Pá<b>18</b></span></div>
+                      <div class="ve-grid ve-times"><span>8:00</span><span class="on">9:30</span><span>11:00</span><span>13:30</span></div>
+                      <div class="ve-go">Rezervovat termín</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c-head"><h3>Autoservis Ventil</h3><span class="mono">Koncept</span></div>
+          <ul>
+            <li>Online rezervace místo telefonování</li>
+            <li>Služby a ceny čitelně na mobilu</li>
+            <li>Ceník jako stránka, ne PDF ke stažení</li>
+          </ul>
+          <div class="switch" role="group" aria-label="Zobrazit stav">
+            <button type="button" data-v="before" aria-pressed="false">Původní</button>
+            <button type="button" data-v="after" aria-pressed="true">Nový</button>
+          </div>
+        </article>
+
+        <!-- Fyzio -->
+        <article class="concept" data-view="after">
+          <div class="browser">
+            <div class="bar"><i></i><i></i><i></i><span class="url">fyzio-rovnovaha.cz</span></div>
+            <div class="mock">
+              <span class="tag tag-demo">Původní stav</span>
+              <span class="tag tag-new">Nový stav</span>
+              <div class="layer before" aria-hidden="true">
+                <div class="old" style="--o-head:linear-gradient(#3b9b3b,#0d4d0d);--o-title:#075e07;--o-bg:#b9c9b9">
+                  <div class="o-wrap">
+                    <div class="o-head">Rehabilitace ROVNOVÁHA<small>Fyzioterapie – masáže – rehabilitace</small></div>
+                    <div class="o-nav"><span>Úvod</span><span>Služby</span><span>Ordinační hodiny</span><span>Kontakt</span></div>
+                    <div class="o-body">
+                      <div class="o-side"><b>UPOZORNĚNÍ:</b>Ve dnech 1.–15.8. ZAVŘENO – dovolená.<u>Ordinační hodiny</u></div>
+                      <div class="o-main"><div class="o-h">Naše služby</div><div class="o-img">[ foto ]</div><p>Nabízíme komplexní rehabilitační péči. Objednávky pouze telefonicky ve všední dny od 7 do 9 hod.</p><p>Formulář k vyplnění <a>stáhnout</a>.</p></div>
+                    </div>
+                    <div class="o-foot">Copyright © 2012 · Stránky vytvořil synovec</div>
+                  </div>
+                </div>
+              </div>
+              <div class="layer after" aria-hidden="true">
+                <div class="nw fy">
+                  <div class="n-nav"><span class="fy-logo"><i></i>rovnováha</span><span class="n-links"><span>Terapie</span><span>Tým</span><span>Ceník</span></span><span class="fy-btn">Objednat se</span></div>
+                  <div class="fy-hero">
+                    <div>
+                      <div class="fy-h">Bez bolesti zpátky do pohybu.</div>
+                      <div class="fy-p">Fyzioterapie, sportovní masáže a rehabilitace po úrazech. Termín si zarezervujete online.</div>
+                      <div class="fy-row"><span class="fy-btn">Vybrat termín</span><span class="fy-free">Volno zítra v 9:00</span></div>
+                    </div>
+                    <div class="fy-stack">
+                      <div class="fy-card"><div><b>Vstupní vyšetření</b><span>60 min</span></div><em>1 100 Kč</em></div>
+                      <div class="fy-card"><div><b>Fyzioterapie</b><span>45 min</span></div><em>900 Kč</em></div>
+                      <div class="fy-card"><div><b>Sportovní masáž</b><span>60 min</span></div><em>850 Kč</em></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c-head"><h3>Fyzio Rovnováha</h3><span class="mono">Koncept</span></div>
+          <ul>
+            <li>Objednávka online, i mimo ordinační hodiny</li>
+            <li>Ceník služeb přímo na úvodní stránce</li>
+            <li>Klidný vzhled, který budí důvěru</li>
+          </ul>
+          <div class="switch" role="group" aria-label="Zobrazit stav">
+            <button type="button" data-v="before" aria-pressed="false">Původní</button>
+            <button type="button" data-v="after" aria-pressed="true">Nový</button>
+          </div>
+        </article>
+
+        <!-- Penzion -->
+        <article class="concept" data-view="after">
+          <div class="browser">
+            <div class="bar"><i></i><i></i><i></i><span class="url">penzion-podskalou.cz</span></div>
+            <div class="mock">
+              <span class="tag tag-demo">Původní stav</span>
+              <span class="tag tag-new">Nový stav</span>
+              <div class="layer before" aria-hidden="true">
+                <div class="old" style="--o-head:linear-gradient(#8a5a2b,#3d230c);--o-title:#6b3d10;--o-bg:#c9b9a3">
+                  <div class="o-wrap">
+                    <div class="o-head">Penzion Pod Skálou<small>Ubytování v soukromí – ideální pro rodiny s dětmi</small></div>
+                    <div class="o-nav"><span>Úvod</span><span>Pokoje</span><span>Ceník</span><span>Okolí</span><span>Fotky</span></div>
+                    <div class="o-body">
+                      <div class="o-side"><b>VOLNÉ TERMÍNY:</b>Informujte se telefonicky nebo e-mailem.<u>Obsazenost 2016</u></div>
+                      <div class="o-main"><div class="o-h">Ubytování</div><div class="o-img">[ foto ]</div><p>Nabízíme ubytování v 2, 3 a 4 lůžkových pokojích. Snídaně za příplatek. Psi po dohodě.</p><p>Rezervace e-mailem, zálohu zašlete na účet.</p></div>
+                    </div>
+                    <div class="o-foot">Jste <span class="o-count"><span>0</span><span>2</span><span>3</span><span>9</span><span>1</span></span>. návštěvník · Přidejte si nás do oblíbených!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="layer after" aria-hidden="true">
+                <div class="nw ps">
+                  <div class="ps-land"><div class="ps-far"></div><div class="ps-rock"></div><div class="ps-near"></div></div>
+                  <div class="n-nav" style="position:relative;z-index:2"><span class="ps-logo">Pod Skálou</span><span class="n-links"><span>Pokoje</span><span>Okolí</span><span>Galerie</span></span></div>
+                  <div class="ps-hero">
+                    <div class="ps-eye">Penzion · 8 pokojů · snídaně v ceně</div>
+                    <div class="ps-h">Klid uprostřed skal.</div>
+                  </div>
+                  <div class="ps-book"><span><small>Příjezd</small>pá 16. 10.</span><span><small>Odjezd</small>ne 18. 10.</span><span><small>Hosté</small>2 dospělí</span><b>Ověřit volno</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c-head"><h3>Penzion Pod Skálou</h3><span class="mono">Koncept</span></div>
+          <ul>
+            <li>Rezervace s dostupností v reálném čase</li>
+            <li>Atmosféra místa hned na první pohled</li>
+            <li>Žádné e-maily tam a zpátky kvůli volnu</li>
+          </ul>
+          <div class="switch" role="group" aria-label="Zobrazit stav">
+            <button type="button" data-v="before" aria-pressed="false">Původní</button>
+            <button type="button" data-v="after" aria-pressed="true">Nový</button>
+          </div>
+        </article>
+      </div>
+      <p class="mono note">Koncepty jsou ukázkové návrhy pro smyšlené firmy.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="postup" class="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="mono">Postup</p><h2>Od zaměření po kolaudaci</h2></div>
+        <p>Web přestavujeme stejně jako dům. Nejdřív zjistíme, co stojí za to zachovat, a teprve potom bouráme a stavíme.</p>
+      </div>
+      <ol class="steps">
+        <li><span class="num">01</span><h3>Zaměření</h3><p>Projdeme současný web: rychlost, zobrazení na mobilu, texty, vyhledávání na Googlu. Řekneme vám, co funguje a co ne.</p></li>
+        <li><span class="num">02</span><h3>Projekt</h3><p>Navrhneme strukturu stránek a nový vzhled. Než začneme stavět, uvidíte, jak bude web vypadat.</p></li>
+        <li><span class="num">03</span><h3>Realizace</h3><p>Postavíme web, přeneseme obsah, nastavíme přesměrování starých adres a připojíme vaši doménu.</p></li>
+        <li><span class="num">04</span><h3>Kolaudace</h3><p>Otestujeme web na počítači i mobilu, spustíme ho a ukážeme vám, jak si upravit obsah.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="mono">Co přestavujeme</p><h2>Rozsah prací</h2></div>
+      </div>
+      <dl class="services">
+        <div><dt>Firemní weby</dt><dd>Prezentace firem a řemeslníků, které mají vést k poptávce nebo telefonátu.</dd></div>
+        <div><dt>Přechod z Webnode, Wixu a WordPressu</dt><dd>Převezmeme obsah a přesměrujeme staré adresy, abyste nepřišli o pozice na Googlu.</dd></div>
+        <div><dt>E-shopy na Shopify</dt><dd>Nový e-shop nebo přestavba starého, včetně plateb, dopravy a napojení na sklad.</dd></div>
+        <div><dt>Správa po spuštění</dt><dd>Úpravy textů, nové stránky a technická údržba, když na ni nemáte čas.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt" class="contact">
+    <div class="wrap">
+      <div class="panel">
+        <div>
+          <p class="mono">Kontakt</p>
+          <h2 style="margin-top:12px">Pošlete nám adresu svého webu.</h2>
+          <p>Podíváme se na něj a ozveme se s konkrétním návrhem, co přestavět a kolik to bude stát. Působíme v Mladé Boleslavi a pracujeme pro klienty z celé republiky.</p>
+        </div>
+        <div class="mail">
+          <span class="mono">E-mail</span>
+          <div class="mail-row">
+            <output id="mail-addr">eminpetlacanpp@gmail.com</output>
+            <button type="button" id="copy-mail">Kopírovat</button>
+          </div>
+          <a class="btn btn-new" href="mailto:eminpetlacanpp@gmail.com?subject=P%C5%99estavba%20webu">Napsat e-mail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap mono">
+    <span>© <span id="yr">2026</span> Nový stav · přestavby webů</span>
+    <span>Výkres zpracoval: Emin Petlača</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var cmp = document.getElementById('hero-compare');
+  var range = document.getElementById('hero-range');
+  function setPos(){ cmp.style.setProperty('--pos', range.value + '%'); }
+  range.addEventListener('input', setPos);
+  setPos();
+
+  document.querySelectorAll('.concept').forEach(function(card){
+    var btns = card.querySelectorAll('.switch button');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        card.dataset.view = b.dataset.v;
+        btns.forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      });
+    });
+    card.querySelector('.mock').addEventListener('click', function(){
+      var next = card.dataset.view === 'after' ? 'before' : 'after';
+      card.querySelector('.switch button[data-v="' + next + '"]').click();
+    });
+    card.querySelector('.mock').style.cursor = 'pointer';
+  });
+
+  var copyBtn = document.getElementById('copy-mail');
+  var addr = document.getElementById('mail-addr');
+  copyBtn.addEventListener('click', function(){
+    function selectIt(){
+      var r = document.createRange(); r.selectNodeContents(addr);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copyBtn.textContent = 'Označeno';
+    }
+    try{
+      navigator.clipboard.writeText(addr.textContent).then(function(){
+        copyBtn.textContent = 'Zkopírováno';
+        setTimeout(function(){ copyBtn.textContent = 'Kopírovat'; }, 1800);
+      }, selectIt);
+    }catch(e){ selectIt(); }
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

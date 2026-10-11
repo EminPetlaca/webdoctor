@@ -188,15 +188,28 @@ section{padding-block:clamp(64px,9vw,120px)}
 
 /* Contact */
 .contact{padding-block:0 clamp(48px,7vw,96px)}
-.panel{background:var(--ink);color:var(--paper);border-radius:8px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px 56px;align-items:end}
+.panel{background:var(--ink);color:var(--paper);border-radius:8px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px 56px;align-items:start}
 .panel h2{font-size:clamp(2rem,4.6vw,3.6rem)}
 .panel p{color:color-mix(in srgb,var(--paper) 72%,transparent);margin-top:18px;max-width:30em}
 .panel .mono{color:color-mix(in srgb,var(--paper) 60%,transparent)}
-.mail{display:flex;flex-direction:column;gap:14px;min-width:0}
-.mail-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid color-mix(in srgb,var(--paper) 30%,transparent);border-radius:4px;padding:8px 8px 8px 16px}
-.mail-row output{flex:1;min-width:0;font-family:var(--f-mono);font-size:.95rem;overflow-wrap:anywhere;user-select:all}
-.mail-row button{font:500 .75rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;border-radius:3px;border:0;background:var(--paper);color:var(--ink);cursor:pointer}
-.panel .btn-new{align-self:flex-start}
+.cform{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 16px;min-width:0}
+.f-row{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f-wide{grid-column:1 / -1}
+.f-row label{font:500 .7rem/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--paper) 65%,transparent)}
+.f-row input,.f-row textarea{font:inherit;font-size:1rem;color:var(--paper);background:color-mix(in srgb,var(--paper) 6%,transparent);border:1px solid color-mix(in srgb,var(--paper) 28%,transparent);border-radius:4px;padding:11px 13px;width:100%;min-width:0;resize:vertical}
+.f-row input::placeholder,.f-row textarea::placeholder{color:color-mix(in srgb,var(--paper) 40%,transparent)}
+.f-row input:focus,.f-row textarea:focus{outline:2px solid var(--new);outline-offset:1px;border-color:transparent}
+.f-row [aria-invalid="true"]{border-color:var(--new)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.f-actions{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.f-actions .btn{border:0}
+.f-actions .btn[disabled]{opacity:.6;cursor:progress}
+.f-status{margin:0;font-size:.95rem}
+.f-status.ok{color:color-mix(in srgb,var(--paper) 90%,transparent)}
+.f-status.err{color:var(--new)}
+.f-alt{grid-column:1 / -1;margin:4px 0 0;color:color-mix(in srgb,var(--paper) 60%,transparent)!important;font-size:.72rem}
+.f-alt a{color:var(--paper);text-transform:none;letter-spacing:0;font-size:.85rem}
+@media (max-width:560px){.cform{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}}
 footer{border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:24px}
@@ -650,14 +663,30 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
           <h2 style="margin-top:12px">Pošlete nám adresu svého webu.</h2>
           <p>Podíváme se na něj a ozveme se s konkrétním návrhem, co přestavět a kolik to bude stát. Působíme v Mladé Boleslavi a pracujeme pro klienty z celé republiky.</p>
         </div>
-        <div class="mail">
-          <span class="mono">E-mail</span>
-          <div class="mail-row">
-            <output id="mail-addr">eminpetlacanpp@gmail.com</output>
-            <button type="button" id="copy-mail">Kopírovat</button>
+        <form class="cform" id="cform" novalidate>
+          <div class="f-row">
+            <label for="f-name">Jméno</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
           </div>
-          <a class="btn btn-new" href="mailto:eminpetlacanpp@gmail.com?subject=P%C5%99estavba%20webu">Napsat e-mail</a>
-        </div>
+          <div class="f-row">
+            <label for="f-email">E-mail</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="f-row f-wide">
+            <label for="f-web">Adresa současného webu</label>
+            <input id="f-web" name="web" type="text" inputmode="url" autocomplete="url" placeholder="www.vasefirma.cz">
+          </div>
+          <div class="f-row f-wide">
+            <label for="f-msg">Zpráva</label>
+            <textarea id="f-msg" name="message" rows="4" placeholder="Co by se mělo na webu změnit?"></textarea>
+          </div>
+          <input class="hp" type="text" name="_honey" id="f-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="f-actions">
+            <button class="btn btn-new" type="submit" id="f-send">Odeslat poptávku</button>
+            <p class="f-status" id="f-status" role="status" aria-live="polite"></p>
+          </div>
+          <p class="f-alt mono">Nebo napište přímo na <a href="mailto:eminpetlacanpp@gmail.com?subject=P%C5%99estavba%20webu">eminpetlacanpp@gmail.com</a></p>
+        </form>
       </div>
     </div>
   </section>
@@ -693,20 +722,40 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
     card.querySelector('.mock').style.cursor = 'pointer';
   });
 
-  var copyBtn = document.getElementById('copy-mail');
-  var addr = document.getElementById('mail-addr');
-  copyBtn.addEventListener('click', function(){
-    function selectIt(){
-      var r = document.createRange(); r.selectNodeContents(addr);
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      copyBtn.textContent = 'Označeno';
-    }
-    try{
-      navigator.clipboard.writeText(addr.textContent).then(function(){
-        copyBtn.textContent = 'Zkopírováno';
-        setTimeout(function(){ copyBtn.textContent = 'Kopírovat'; }, 1800);
-      }, selectIt);
-    }catch(e){ selectIt(); }
+  var form = document.getElementById('cform');
+  var sendBtn = document.getElementById('f-send');
+  var status = document.getElementById('f-status');
+  function setStatus(msg, kind){ status.textContent = msg; status.className = 'f-status ' + (kind || ''); }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = form.elements.name, email = form.elements.email;
+    var bad = [];
+    name.setAttribute('aria-invalid', String(!name.value.trim())); if (!name.value.trim()) bad.push(name);
+    var okMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    email.setAttribute('aria-invalid', String(!okMail)); if (!okMail) bad.push(email);
+    if (bad.length){ setStatus('Vyplňte prosím jméno a platný e-mail.', 'err'); bad[0].focus(); return; }
+    if (form.elements._honey.value) { setStatus('Děkujeme, zpráva odeslána.', 'ok'); form.reset(); return; }
+    sendBtn.disabled = true; setStatus('Odesílám…');
+    fetch('https://formsubmit.co/ajax/eminpetlacanpp@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        'Jméno': name.value.trim(),
+        email: email.value.trim(),
+        'Web': form.elements.web.value.trim(),
+        'Zpráva': form.elements.message.value.trim(),
+        _subject: 'Poptávka z web-doktor.cz – ' + name.value.trim(),
+        _template: 'table',
+        _captcha: 'false'
+      })
+    }).then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
+      .then(function(res){
+        if (res.ok && String(res.d.success) === 'true') {
+          form.reset(); setStatus('Děkujeme, zpráva odeslána. Ozveme se vám co nejdřív.', 'ok');
+        } else { throw new Error(res.d && res.d.message || 'send failed'); }
+      })
+      .catch(function(){ setStatus('Zprávu se nepodařilo odeslat. Napište nám prosím přímo na e-mail níže.', 'err'); })
+      .then(function(){ sendBtn.disabled = false; });
   });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
